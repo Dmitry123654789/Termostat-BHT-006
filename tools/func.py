@@ -1,6 +1,6 @@
 import modbus_tk.defines as cst
 
-from tools.message_boxes import WarningDiolog
+from tools.windows.warning import WarningDiolog
 
 
 def check_connect(func):

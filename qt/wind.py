@@ -12,16 +12,16 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(770, 540)
-        MainWindow.setMinimumSize(QtCore.QSize(770, 540))
-        MainWindow.setMaximumSize(QtCore.QSize(770, 540))
-        MainWindow.setSizeIncrement(QtCore.QSize(770, 535))
+        MainWindow.resize(850, 540)
+        MainWindow.setMinimumSize(QtCore.QSize(850, 540))
+        MainWindow.setMaximumSize(QtCore.QSize(850, 540))
+        MainWindow.setSizeIncrement(QtCore.QSize(800, 535))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(13)
         MainWindow.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("qt\\../img/icon.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap("qt\\../../TermostatBHT/img/icon.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet("MainWindow{\n"
 "background-color: #e3e4e8;\n"
@@ -52,7 +52,7 @@ class Ui_MainWindow(object):
         self.lineEdit_update_ms.setFont(font)
         self.lineEdit_update_ms.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeading|QtCore.Qt.AlignmentFlag.AlignLeft|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.lineEdit_update_ms.setButtonSymbols(QtWidgets.QAbstractSpinBox.ButtonSymbols.NoButtons)
-        self.lineEdit_update_ms.setMinimum(100)
+        self.lineEdit_update_ms.setMinimum(200)
         self.lineEdit_update_ms.setMaximum(100000)
         self.lineEdit_update_ms.setProperty("value", 1000)
         self.lineEdit_update_ms.setObjectName("lineEdit_update_ms")
@@ -77,7 +77,7 @@ class Ui_MainWindow(object):
         self.pushButton_set_timer.setObjectName("pushButton_set_timer")
         self.horizontalLayout_2.addWidget(self.pushButton_set_timer)
         self.layoutWidget1 = QtWidgets.QWidget(parent=self.centralwidget)
-        self.layoutWidget1.setGeometry(QtCore.QRect(10, 10, 741, 64))
+        self.layoutWidget1.setGeometry(QtCore.QRect(10, 10, 831, 64))
         self.layoutWidget1.setObjectName("layoutWidget1")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget1)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -144,6 +144,26 @@ class Ui_MainWindow(object):
 "}")
         self.pushButton_set_device.setObjectName("pushButton_set_device")
         self.horizontalLayout.addWidget(self.pushButton_set_device)
+        self.pushButton_unset_device = QtWidgets.QPushButton(parent=self.layoutWidget1)
+        self.pushButton_unset_device.setMinimumSize(QtCore.QSize(150, 30))
+        font = QtGui.QFont()
+        font.setFamily("Times New Roman")
+        font.setPointSize(12)
+        font.setBold(True)
+        self.pushButton_unset_device.setFont(font)
+        self.pushButton_unset_device.setStyleSheet("QPushButton{\n"
+"    background-color: rgb(227, 227, 227);\n"
+"    color: rgb(3, 3, 3);\n"
+"    border: 2px solid rgb(126, 126, 126);\n"
+"    border-radius: 3px\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"    background-color: rgb(30, 170, 14);\n"
+"    color: rgb(255, 255, 255);\n"
+"}")
+        self.pushButton_unset_device.setObjectName("pushButton_unset_device")
+        self.horizontalLayout.addWidget(self.pushButton_unset_device)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.label_mac_address = QtWidgets.QLabel(parent=self.layoutWidget1)
         font = QtGui.QFont()
@@ -197,8 +217,8 @@ class Ui_MainWindow(object):
         self.doubleSpinBox_week_timer.setFont(font)
         self.doubleSpinBox_week_timer.setButtonSymbols(QtWidgets.QAbstractSpinBox.ButtonSymbols.NoButtons)
         self.doubleSpinBox_week_timer.setDecimals(1)
-        self.doubleSpinBox_week_timer.setMinimum(0.0)
-        self.doubleSpinBox_week_timer.setMaximum(35.0)
+        self.doubleSpinBox_week_timer.setMinimum(5.0)
+        self.doubleSpinBox_week_timer.setMaximum(44.0)
         self.doubleSpinBox_week_timer.setProperty("value", 20.0)
         self.doubleSpinBox_week_timer.setObjectName("doubleSpinBox_week_timer")
         self.horizontalLayout_4.addWidget(self.doubleSpinBox_week_timer)
@@ -268,7 +288,7 @@ class Ui_MainWindow(object):
         self.doubleSpinBox_set_temp.setButtonSymbols(QtWidgets.QAbstractSpinBox.ButtonSymbols.NoButtons)
         self.doubleSpinBox_set_temp.setDecimals(1)
         self.doubleSpinBox_set_temp.setMinimum(5.0)
-        self.doubleSpinBox_set_temp.setMaximum(35.0)
+        self.doubleSpinBox_set_temp.setMaximum(44.0)
         self.doubleSpinBox_set_temp.setProperty("value", 20.0)
         self.doubleSpinBox_set_temp.setObjectName("doubleSpinBox_set_temp")
         self.horizontalLayout_5.addWidget(self.doubleSpinBox_set_temp)
@@ -557,6 +577,18 @@ class Ui_MainWindow(object):
 "}")
         self.pushButton_synchronize_date.setObjectName("pushButton_synchronize_date")
         self.gridLayout.addWidget(self.pushButton_synchronize_date, 10, 0, 1, 4)
+        self.pushButton_upload = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.pushButton_upload.setEnabled(False)
+        self.pushButton_upload.setGeometry(QtCore.QRect(370, 100, 16, 16))
+        self.pushButton_upload.setStyleSheet("QPushButton{\n"
+"background-color: rgb(227, 227, 227);\n"
+"    color: rgb(3, 3, 3);\n"
+"    border: 2px solid rgb(126, 126, 126);\n"
+"    border-radius: 8px\n"
+"}\n"
+"")
+        self.pushButton_upload.setText("")
+        self.pushButton_upload.setObjectName("pushButton_upload")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -570,13 +602,14 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "IP"))
         self.label.setText(_translate("MainWindow", "Порт"))
         self.pushButton_set_device.setText(_translate("MainWindow", "Подключиться"))
+        self.pushButton_unset_device.setText(_translate("MainWindow", "Отключиться"))
         self.label_mac_address.setText(_translate("MainWindow", "MAC-адрес: "))
         self.pushButton_block_key.setText(_translate("MainWindow", "Вкл/Откл"))
         self.pushButton_week_timer.setText(_translate("MainWindow", "Установить"))
         self.label_13.setText(_translate("MainWindow", "Час"))
-        self.label_11.setText(_translate("MainWindow", "Температура по недельному таймеру"))
+        self.label_11.setText(_translate("MainWindow", "Температура для недельного таймера"))
         self.pushButton_set_temp.setText(_translate("MainWindow", "Установить"))
-        self.label_10.setText(_translate("MainWindow", "Уставка температуры(Ручной)"))
+        self.label_10.setText(_translate("MainWindow", "Уставка температуры (Ручной)"))
         self.label_5.setText(_translate("MainWindow", "Температура"))
         self.pushButton_set_hour.setText(_translate("MainWindow", "Установить"))
         self.label_7.setText(_translate("MainWindow", "День недели"))

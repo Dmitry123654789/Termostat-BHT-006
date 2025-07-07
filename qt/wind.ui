@@ -6,25 +6,25 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>770</width>
+    <width>850</width>
     <height>540</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>770</width>
+    <width>850</width>
     <height>540</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>770</width>
+    <width>850</width>
     <height>540</height>
    </size>
   </property>
   <property name="sizeIncrement">
    <size>
-    <width>770</width>
+    <width>800</width>
     <height>535</height>
    </size>
   </property>
@@ -39,7 +39,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../img/icon.png</normaloff>../img/icon.png</iconset>
+    <normaloff>../../TermostatBHT/img/icon.png</normaloff>../../TermostatBHT/img/icon.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">MainWindow{
@@ -91,7 +91,7 @@ background-color: #e3e4e8;
         <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
        </property>
        <property name="minimum">
-        <number>100</number>
+        <number>200</number>
        </property>
        <property name="maximum">
         <number>100000</number>
@@ -140,7 +140,7 @@ QPushButton:hover{
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>741</width>
+      <width>831</width>
       <height>64</height>
      </rect>
     </property>
@@ -275,6 +275,39 @@ QPushButton:hover{
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_unset_device">
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Times New Roman</family>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+	background-color: rgb(227, 227, 227);
+	color: rgb(3, 3, 3);
+	border: 2px solid rgb(126, 126, 126);
+	border-radius: 3px
+}
+
+QPushButton:hover{
+	background-color: rgb(30, 170, 14);
+	color: rgb(255, 255, 255);
+}</string>
+         </property>
+         <property name="text">
+          <string>Отключиться</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
      <item>
@@ -372,10 +405,10 @@ QPushButton:hover{
           <number>1</number>
          </property>
          <property name="minimum">
-          <double>0.000000000000000</double>
+          <double>5.000000000000000</double>
          </property>
          <property name="maximum">
-          <double>35.000000000000000</double>
+          <double>44.000000000000000</double>
          </property>
          <property name="value">
           <double>20.000000000000000</double>
@@ -440,7 +473,7 @@ QPushButton:hover{
         </font>
        </property>
        <property name="text">
-        <string>Температура по недельному таймеру</string>
+        <string>Температура для недельного таймера</string>
        </property>
       </widget>
      </item>
@@ -504,7 +537,7 @@ QPushButton:hover{
           <double>5.000000000000000</double>
          </property>
          <property name="maximum">
-          <double>35.000000000000000</double>
+          <double>44.000000000000000</double>
          </property>
          <property name="value">
           <double>20.000000000000000</double>
@@ -555,7 +588,7 @@ QPushButton:hover{
         </font>
        </property>
        <property name="text">
-        <string>Уставка температуры(Ручной)</string>
+        <string>Уставка температуры (Ручной)</string>
        </property>
       </widget>
      </item>
@@ -998,6 +1031,31 @@ QPushButton:hover{
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QPushButton" name="pushButton_upload">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>100</y>
+      <width>16</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color: rgb(227, 227, 227);
+	color: rgb(3, 3, 3);
+	border: 2px solid rgb(126, 126, 126);
+	border-radius: 8px
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
    </widget>
   </widget>
  </widget>
