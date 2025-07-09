@@ -20,6 +20,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.host = None
         self.port = None
         self.slave = None
+        self.slave_id = None
 
         self.timer = QTimer(self)
         self.timer_bulb = QTimer(self)
@@ -77,54 +78,54 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         now = datetime.now()
         hour, minute, day_week = now.hour, now.minute, now.weekday() + 1
 
-        res_hour = set_time(self.slave, 9, hour)
+        res_hour = set_time(self.slave, self.slave_id, 9, hour)
         if not res_hour is None:
-            res_minute = set_time(self.slave, 8, minute)
-            res_day_week = set_time(self.slave, 10, day_week)
+            res_minute = set_time(self.slave, self.slave_id, 8, minute)
+            res_day_week = set_time(self.slave, self.slave_id, 10, day_week)
 
             self.label_hour.setText(f'{res_hour if not res_hour is None else ""}')
             self.label_minut.setText(f'{res_minute if not res_minute is None else ""}')
             self.label_day_week.setText(f'{DAY_WEEK[res_day_week]}')
 
     def set_minute(self):
-        res = set_time(self.slave, 8, int(self.lineEdit_set_minute.text()))
+        res = set_time(self.slave, self.slave_id, 8, int(self.lineEdit_set_minute.text()))
         self.label_minut.setText(f'{res if not res is None else ""}')
 
     def set_hour(self):
-        res = set_time(self.slave, 9, int(self.lineEdit_set_hour.text()))
+        res = set_time(self.slave, self.slave_id, 9, int(self.lineEdit_set_hour.text()))
         self.label_hour.setText(f'{res if not res is None else ""}')
 
     def next_day_week(self):
-        res = change_value(self.slave, 10, cycle=8, del_zero=True)
+        res = change_value(self.slave, self.slave_id, 10, cycle=8, del_zero=True)
         self.label_day_week.setText(f'{DAY_WEEK[res]}')
 
     def set_temp(self):
         temp = float(self.doubleSpinBox_set_temp.text().replace(',', '.'))
-        res = change_teperature_value(self.slave, 5, temp)
+        res = change_teperature_value(self.slave, self.slave_id, 5, temp)
         self.label_set_temp.setText(f'{(res / 10) if not res is None else ""} °C')
 
     def week_timer(self):
         temp = float(self.doubleSpinBox_week_timer.text().replace(',', '.'))
-        res = change_teperature_value(self.slave, 6, temp)
+        res = change_teperature_value(self.slave, self.slave_id, 6, temp)
         self.label_week_timer.setText(f'{(res / 10) if not res is None else ""} °C')
 
     def set_display(self):
-        res = change_value(self.slave, 1)
+        res = change_value(self.slave, self.slave_id, 1)
         self.label_display.setText(f'{ON_OFF[res]}')
 
     def auto_hand(self):
-        res = change_value(self.slave, 3, value=0)
+        res = change_value(self.slave, self.slave_id, 3, value=0)
         self.label_auto_hand.setText(f'{HEAD_AUTO[res]}')
 
     def block_key(self):
-        res = change_value(self.slave, 7)
+        res = change_value(self.slave, self.slave_id, 7)
         self.label_block_key.setText(f'{ON_OFF[res]}')
 
     def update_labels(self):
         if self.slave is None:
             return
         try:
-            get_values = self.slave.execute(1, cst.READ_HOLDING_REGISTERS, 0, 10)
+            get_values = self.slave.execute(self.slave_id, cst.READ_HOLDING_REGISTERS, 0, 10)
         except TimeoutError:
             dlg = WarningDiolog('Устройство не подключено')
             dlg.exec()
@@ -163,10 +164,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.slave.set_timeout(int(self.lineEdit_update_ms.text()) / 1000)
 
         try:
-            self.slave.execute(1, cst.READ_HOLDING_REGISTERS, 0, 1)
+            slave_id = int(self.lineEdit_slave_id.text())
+
+            self.slave.execute(slave_id, cst.READ_HOLDING_REGISTERS, 0, 1)
 
             self.host = host
             self.port = port
+            self.slave_id = slave_id
 
             ip_mac = get_mac_address(ip=self.host)
             self.label_mac_address.setText(f'MAC-адрес: {ip_mac}\tIP: {self.host}\tПорт: {self.port}')
@@ -176,6 +180,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.slave.set_timeout(int(self.lineEdit_update_ms.text()) / 1000)
             else:
                 self.slave = None
+
 
             dlg = WarningDiolog(f'Ошибка с подключением\nПроверьте правильность IP и Порта')
             dlg.exec()
@@ -195,6 +200,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.host = None
         self.port = None
         self.slave = None
+        self.slave_id = None
 
         self.label_mac_address.setText('MAC-адрес: ')
 
