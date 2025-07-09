@@ -1,14 +1,15 @@
-import modbus_tk.defines as cst
+from pymodbus.client import ModbusTcpClient
+from pymodbus.exceptions import ModbusIOException
 
 from tools.windows.warning import WarningDiolog
 
 
 def check_connect(func):
-    def check(slave, slave_id, *args, **kwargs):
+    def check(client, slave_id, *args, **kwargs):
         try:
-            slave.execute(slave_id, cst.READ_HOLDING_REGISTERS, 0, 1)
-            return func(slave, slave_id, *args, **kwargs)
-        except AttributeError as e:
+            res = client.read_holding_registers(address=0, slave=slave_id, count=1)
+            return func(client, slave_id, *args, **kwargs)
+        except ModbusIOException:
             dlg = WarningDiolog('Устройство не подключено')
             dlg.exec()
             return None
@@ -16,23 +17,44 @@ def check_connect(func):
     return check
 
 
-@check_connect
-def set_time(slave, slave_id, address, value):
-    set_state_display = slave.execute(slave_id, cst.WRITE_SINGLE_REGISTER, address - 1, 1, output_value=value)
-    return set_state_display[1]
+def connect_device_tcp_ip(host: str, port: int) -> ModbusTcpClient | None:
+    client = ModbusTcpClient(host, port=port)
+
+    if client.connect():
+        return client
+
+    return None
+
+def check_id_device(client: ModbusTcpClient, slave_id):
+    try:
+        result = client.read_holding_registers(address=0, count=1, slave=slave_id)
+        if result.isError():
+            return False
+    except ModbusIOException:
+        return False
+
+    return True
 
 
 @check_connect
-def change_value(slave, slave_id, address, value=1, cycle=2, del_zero=False):
-    get_state = slave.execute(slave_id, cst.READ_HOLDING_REGISTERS, address - 1, 1)
-    set_state = slave.execute(slave_id, cst.WRITE_SINGLE_REGISTER, address - 1, 1,
-                              output_value=((get_state[0] + value) % cycle) if not del_zero else max(1, (
-                                      get_state[0] + value) % cycle))
-    return set_state[1]
+def set_time(client: ModbusTcpClient, slave_id, address, value):
+    set_state_display = client.write_register(address - 1, value, slave=slave_id)
 
 
 @check_connect
-def change_teperature_value(slave, slave_id, address, value):
-    set_state = slave.execute(slave_id, cst.WRITE_SINGLE_REGISTER, address - 1, 1,
-                              output_value=int(value * 10))
-    return set_state[1]
+def change_value(client: ModbusTcpClient, slave_id, address, value=1, cycle=2, del_zero=False):
+    get_state = client.read_holding_registers(address=address - 1, slave=slave_id, count=1).registers
+    send_value = ((get_state[0] + value) % cycle) if not del_zero else max(1, (get_state[0] + value) % cycle)
+
+    set_state_display = client.write_register(address - 1, send_value, slave=slave_id)
+
+
+@check_connect
+def change_teperature_value(client: ModbusTcpClient, slave_id, address, value):
+    set_state_display = client.write_register(address - 1, int(value * 10), slave=slave_id)
+
+@check_connect
+def get_values_holding_register(client: ModbusTcpClient, slave_id: int, count_address: int):
+    res = client.read_holding_registers(address=0, slave=slave_id, count=count_address)
+
+    return res.registers

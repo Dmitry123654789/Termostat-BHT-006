@@ -1,14 +1,12 @@
 from datetime import datetime
 
-import modbus_tk.defines as cst
 from PyQt6.QtCore import QTimer
 from PyQt6.QtWidgets import QMainWindow
 from getmac import get_mac_address
-from modbus_tk import modbus_tcp
 
-from qt.wind import Ui_MainWindow
+from qt.main_wind import Ui_MainWindow
 from tools.constants import DAY_WEEK, ON_OFF, HEAD_AUTO
-from tools.func import set_time, change_value, change_teperature_value
+from tools.func import *
 from tools.windows.warning import WarningDiolog
 
 
@@ -17,8 +15,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
 
-        self.host = None
-        self.port = None
         self.slave = None
         self.slave_id = None
 
@@ -38,8 +34,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.timer_bulb.timeout.connect(self.update_bulb_gray)
 
     def buttons_connect(self):
-        self.pushButton_set_timer.clicked.connect(self.update_timer)
         self.pushButton_set_device.clicked.connect(self.set_device)
+        self.pushButton_unset_device.clicked.connect(self.unset_device)
+        self.pushButton_set_timer.clicked.connect(self.update_timer)
+
         self.pushButton_display.clicked.connect(self.set_display)
         self.pushButton_auto_hand.clicked.connect(self.auto_hand)
         self.pushButton_set_temp.clicked.connect(self.set_temp)
@@ -49,7 +47,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pushButton_set_hour.clicked.connect(self.set_hour)
         self.pushButton_next_day_week.clicked.connect(self.next_day_week)
         self.pushButton_synchronize_date.clicked.connect(self.synchronize_date)
-        self.pushButton_unset_device.clicked.connect(self.unset_device)
+
+        self.pushButton_change_com_port.clicked.connect(self.change_com_port)
+        self.pushButton_change_tcp_ip.clicked.connect(self.change_tcp_ip)
+
+    def change_com_port(self):
+        self.stackedWidget_connect_variants.setCurrentIndex(0)
+
+    def change_tcp_ip(self):
+        self.stackedWidget_connect_variants.setCurrentIndex(1)
 
     def update_bulb(self):
         self.pushButton_upload.setStyleSheet('''QPushButton{
@@ -79,13 +85,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         hour, minute, day_week = now.hour, now.minute, now.weekday() + 1
 
         res_hour = set_time(self.slave, self.slave_id, 9, hour)
-        if not res_hour is None:
-            res_minute = set_time(self.slave, self.slave_id, 8, minute)
-            res_day_week = set_time(self.slave, self.slave_id, 10, day_week)
+        res_minute = set_time(self.slave, self.slave_id, 8, minute)
+        res_day_week = set_time(self.slave, self.slave_id, 10, day_week)
 
-            self.label_hour.setText(f'{res_hour if not res_hour is None else ""}')
-            self.label_minut.setText(f'{res_minute if not res_minute is None else ""}')
-            self.label_day_week.setText(f'{DAY_WEEK[res_day_week]}')
+        self.label_hour.setText(f'{res_hour if not res_hour is None else ""}')
+        self.label_minut.setText(f'{res_minute if not res_minute is None else ""}')
+        self.label_day_week.setText(f'{DAY_WEEK[res_day_week]}')
 
     def set_minute(self):
         res = set_time(self.slave, self.slave_id, 8, int(self.lineEdit_set_minute.text()))
@@ -125,7 +130,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.slave is None:
             return
         try:
-            get_values = self.slave.execute(self.slave_id, cst.READ_HOLDING_REGISTERS, 0, 10)
+            get_values = get_values_holding_register(self.slave, self.slave_id, 10)
         except TimeoutError:
             dlg = WarningDiolog('Устройство не подключено')
             dlg.exec()
@@ -154,34 +159,30 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.slave is None:
             return
         self.timer.setInterval(int(self.lineEdit_update_ms.text()))
-        self.slave.set_timeout(int(self.lineEdit_update_ms.text()))
 
     def set_device(self):
         host = self.lineEdit_ip.text()
-        port = int(self.lineEdit_port.text())
+        port = int(self.lineEdit_port_tcp_ip.text())
 
-        self.slave = modbus_tcp.TcpMaster(host=host, port=port)
-        self.slave.set_timeout(int(self.lineEdit_update_ms.text()) / 1000)
+        slave = connect_device_tcp_ip(host=host, port=port)
+        if not slave is None:
+            self.slave = slave
+            slave_id = int(self.lineEdit_slave_id_tcp_ip.text())
 
-        try:
-            slave_id = int(self.lineEdit_slave_id.text())
+            res = check_id_device(self.slave, slave_id)
+            if res:
+                self.slave_id = slave_id
 
-            self.slave.execute(slave_id, cst.READ_HOLDING_REGISTERS, 0, 1)
+                host = self.slave.comm_params.host
+                port = self.slave.comm_params.port
+                ip_mac = get_mac_address(ip=host)
+                self.label_mac_address.setText(f'MAC-адрес: {ip_mac}\tIP: {host}\tПорт: {port}')
 
-            self.host = host
-            self.port = port
-            self.slave_id = slave_id
-
-            ip_mac = get_mac_address(ip=self.host)
-            self.label_mac_address.setText(f'MAC-адрес: {ip_mac}\tIP: {self.host}\tПорт: {self.port}')
-        except Exception as e:
-            if self.host and self.host:
-                self.slave = modbus_tcp.TcpMaster(host=self.host, port=self.port)
-                self.slave.set_timeout(int(self.lineEdit_update_ms.text()) / 1000)
             else:
-                self.slave = None
+                dlg = WarningDiolog(f'Ошибка с подключением\nПроверьте правильность ID')
+                dlg.exec()
 
-
+        else:
             dlg = WarningDiolog(f'Ошибка с подключением\nПроверьте правильность IP и Порта')
             dlg.exec()
 
@@ -197,8 +198,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.label_hour.setText('')
         self.label_day_week.setText('')
 
-        self.host = None
-        self.port = None
         self.slave = None
         self.slave_id = None
 
@@ -206,3 +205,4 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def closeEvent(self, event):
         self.deleteLater()
+
