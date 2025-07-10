@@ -217,7 +217,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             dlg = WarningDiolog(f'Ошибка с подключением\nПроверьте правильность IP и Порта')
             dlg.exec()
 
-
     def clean_value(self):
         all_fields = [self.label_display, self.label_temp, self.label_auto_hand, self.label_heat, self.label_set_temp,
                       self.label_week_timer, self.label_block_key, self.label_minut, self.label_hour,
@@ -231,4 +230,5 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.slave_id = None
 
     def closeEvent(self, event):
+        self.clean_value()
         self.deleteLater()
