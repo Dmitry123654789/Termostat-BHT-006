@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>762</width>
-    <height>634</height>
+    <width>760</width>
+    <height>668</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>500</width>
-    <height>500</height>
+    <width>760</width>
+    <height>668</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>10000</width>
-    <height>10000</height>
+    <width>760</width>
+    <height>668</height>
    </size>
   </property>
   <property name="sizeIncrement">
@@ -301,12 +301,12 @@ QPushButton:hover{
       <x>11</x>
       <y>226</y>
       <width>731</width>
-      <height>390</height>
+      <height>426</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="2" column="1">
-      <widget class="QLabel" name="label_auto_hand">
+     <item row="9" column="1">
+      <widget class="QLabel" name="label_minut">
        <property name="font">
         <font>
          <family>Times New Roman</family>
@@ -316,52 +316,6 @@ QPushButton:hover{
        </property>
        <property name="text">
         <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLabel" name="label_heat">
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>16</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2" colspan="2">
-      <widget class="QPushButton" name="pushButton_display">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>12</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(227, 227, 227);
-	color: rgb(3, 3, 3);
-	border: 2px solid rgb(126, 126, 126);
-	border-radius: 4px
-}
-
-QPushButton:hover{
-	background-color: rgb(252, 255, 216);
-}</string>
-       </property>
-       <property name="text">
-        <string>Вкл/Откл</string>
        </property>
       </widget>
      </item>
@@ -376,20 +330,6 @@ QPushButton:hover{
        </property>
        <property name="text">
         <string>Блокировка клавиш</string>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="1">
-      <widget class="QLabel" name="label_minut">
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>16</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string/>
        </property>
       </widget>
      </item>
@@ -466,50 +406,78 @@ QPushButton:hover{
        </item>
       </layout>
      </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_8">
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>16</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Нагрев Вкл/Откл</string>
-       </property>
-      </widget>
+     <item row="9" column="2" colspan="2">
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QSpinBox" name="lineEdit_set_minute">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Times New Roman</family>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+         </property>
+         <property name="readOnly">
+          <bool>false</bool>
+         </property>
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+         </property>
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>59</number>
+         </property>
+         <property name="value">
+          <number>59</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_set_minute">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Times New Roman</family>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+	background-color: rgb(227, 227, 227);
+	color: rgb(3, 3, 3);
+	border: 2px solid rgb(126, 126, 126);
+	border-radius: 4px
+}
+
+QPushButton:hover{
+	background-color: rgb(252, 255, 216);
+}</string>
+         </property>
+         <property name="text">
+          <string>Установить</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="label_11">
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>16</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Температура для недельного таймера</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_5">
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>16</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Температура</string>
-       </property>
-      </widget>
-     </item>
-     <item row="10" column="0" colspan="4">
-      <widget class="QPushButton" name="pushButton_synchronize_date">
+     <item row="0" column="2" colspan="2">
+      <widget class="QPushButton" name="pushButton_display">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -536,7 +504,193 @@ QPushButton:hover{
 }</string>
        </property>
        <property name="text">
-        <string>Синхронизировать время и день недели с PC</string>
+        <string>Вкл/Откл</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="label_auto_hand">
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="0">
+      <widget class="QLabel" name="label_7">
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>День недели</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="2" colspan="2">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QSpinBox" name="lineEdit_set_hour">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Times New Roman</family>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+         </property>
+         <property name="readOnly">
+          <bool>false</bool>
+         </property>
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+         </property>
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>23</number>
+         </property>
+         <property name="value">
+          <number>23</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_set_hour">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Times New Roman</family>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+	background-color: rgb(227, 227, 227);
+	color: rgb(3, 3, 3);
+	border: 2px solid rgb(126, 126, 126);
+	border-radius: 4px
+}
+
+QPushButton:hover{
+	background-color: rgb(252, 255, 216);
+}</string>
+         </property>
+         <property name="text">
+          <string>Установить</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="9" column="0">
+      <widget class="QLabel" name="label_9">
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Минут</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_5">
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Температура</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="2" colspan="2">
+      <widget class="QPushButton" name="pushButton_block_key">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>12</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	background-color: rgb(227, 227, 227);
+	color: rgb(3, 3, 3);
+	border: 2px solid rgb(126, 126, 126);
+	border-radius: 4px
+}
+
+QPushButton:hover{
+	background-color: rgb(252, 255, 216);
+}</string>
+       </property>
+       <property name="text">
+        <string>Вкл/Откл</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label_10">
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Уставка температуры (Ручной)</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_6">
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Авто/Ручной</string>
        </property>
       </widget>
      </item>
@@ -613,157 +767,7 @@ QPushButton:hover{
        </item>
       </layout>
      </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="label_display">
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>16</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QLabel" name="label_set_temp">
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>16</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLabel" name="label_temp">
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>16</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QLabel" name="label_week_timer">
-       <property name="minimumSize">
-        <size>
-         <width>100</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>16</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="0">
-      <widget class="QLabel" name="label_13">
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>16</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Час</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="label_6">
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>16</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Авто/Ручной</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="label_10">
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>16</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Уставка температуры (Ручной)</string>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="0">
-      <widget class="QLabel" name="label_7">
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>16</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>День недели</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="2" colspan="2">
-      <widget class="QPushButton" name="pushButton_block_key">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>12</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(227, 227, 227);
-	color: rgb(3, 3, 3);
-	border: 2px solid rgb(126, 126, 126);
-	border-radius: 4px
-}
-
-QPushButton:hover{
-	background-color: rgb(252, 255, 216);
-}</string>
-       </property>
-       <property name="text">
-        <string>Вкл/Откл</string>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="1">
+     <item row="10" column="1">
       <widget class="QLabel" name="label_day_week">
        <property name="font">
         <font>
@@ -777,40 +781,8 @@ QPushButton:hover{
        </property>
       </widget>
      </item>
-     <item row="9" column="2" colspan="2">
-      <widget class="QPushButton" name="pushButton_next_day_week">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>12</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(227, 227, 227);
-	color: rgb(3, 3, 3);
-	border: 2px solid rgb(126, 126, 126);
-	border-radius: 4px
-}
-
-QPushButton:hover{
-	background-color: rgb(252, 255, 216);
-}</string>
-       </property>
-       <property name="text">
-        <string>Следующий</string>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="0">
-      <widget class="QLabel" name="label_9">
+     <item row="5" column="0">
+      <widget class="QLabel" name="label_11">
        <property name="font">
         <font>
          <family>Times New Roman</family>
@@ -819,26 +791,12 @@ QPushButton:hover{
         </font>
        </property>
        <property name="text">
-        <string>Минут</string>
+        <string>Температура для недельного таймера</string>
        </property>
       </widget>
      </item>
-     <item row="6" column="1">
-      <widget class="QLabel" name="label_block_key">
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>16</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="1">
-      <widget class="QLabel" name="label_hour">
+     <item row="1" column="1">
+      <widget class="QLabel" name="label_temp">
        <property name="font">
         <font>
          <family>Times New Roman</family>
@@ -865,123 +823,79 @@ QPushButton:hover{
        </property>
       </widget>
      </item>
-     <item row="7" column="2" colspan="2">
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QSpinBox" name="lineEdit_set_hour">
-         <property name="maximumSize">
-          <size>
-           <width>80</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>Times New Roman</family>
-           <pointsize>13</pointsize>
-          </font>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-         </property>
-         <property name="buttonSymbols">
-          <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
-         </property>
-         <property name="minimum">
-          <number>0</number>
-         </property>
-         <property name="maximum">
-          <number>23</number>
-         </property>
-         <property name="value">
-          <number>23</number>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_set_hour">
-         <property name="minimumSize">
-          <size>
-           <width>100</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>Times New Roman</family>
-           <pointsize>12</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton{
-	background-color: rgb(227, 227, 227);
-	color: rgb(3, 3, 3);
-	border: 2px solid rgb(126, 126, 126);
-	border-radius: 4px
-}
-
-QPushButton:hover{
-	background-color: rgb(252, 255, 216);
-}</string>
-         </property>
-         <property name="text">
-          <string>Установить</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+     <item row="8" column="0">
+      <widget class="QLabel" name="label_13">
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Час</string>
+       </property>
+      </widget>
      </item>
-     <item row="8" column="2" colspan="2">
-      <layout class="QHBoxLayout" name="horizontalLayout_3">
-       <item>
-        <widget class="QSpinBox" name="lineEdit_set_minute">
-         <property name="maximumSize">
-          <size>
-           <width>80</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>Times New Roman</family>
-           <pointsize>13</pointsize>
-          </font>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-         </property>
-         <property name="buttonSymbols">
-          <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
-         </property>
-         <property name="minimum">
-          <number>0</number>
-         </property>
-         <property name="maximum">
-          <number>59</number>
-         </property>
-         <property name="value">
-          <number>59</number>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_set_minute">
-         <property name="minimumSize">
-          <size>
-           <width>100</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>Times New Roman</family>
-           <pointsize>12</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton{
+     <item row="0" column="1">
+      <widget class="QLabel" name="label_display">
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="label_heat">
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_8">
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Нагрев Вкл/Откл</string>
+       </property>
+      </widget>
+     </item>
+     <item row="11" column="0" colspan="4">
+      <widget class="QPushButton" name="pushButton_synchronize_date">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>12</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
 	background-color: rgb(227, 227, 227);
 	color: rgb(3, 3, 3);
 	border: 2px solid rgb(126, 126, 126);
@@ -991,18 +905,50 @@ QPushButton:hover{
 QPushButton:hover{
 	background-color: rgb(252, 255, 216);
 }</string>
-         </property>
-         <property name="text">
-          <string>Установить</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+       </property>
+       <property name="text">
+        <string>Синхронизировать время и день недели с PC</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLabel" name="label_set_temp">
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLabel" name="label_week_timer">
+       <property name="minimumSize">
+        <size>
+         <width>128</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </item>
      <item row="2" column="2" colspan="2">
       <layout class="QHBoxLayout" name="horizontalLayout_6">
        <item>
-        <widget class="QCheckBox" name="checkBox">
+        <widget class="QCheckBox" name="checkBox_auto_hand">
          <property name="maximumSize">
           <size>
            <width>115</width>
@@ -1021,6 +967,9 @@ QPushButton:hover{
          </property>
          <property name="text">
           <string>Инверсия 0/1</string>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -1058,6 +1007,116 @@ QPushButton:hover{
        </item>
       </layout>
      </item>
+     <item row="6" column="1">
+      <widget class="QLabel" name="label_block_key">
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="2" colspan="2">
+      <widget class="QPushButton" name="pushButton_next_day_week">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>12</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	background-color: rgb(227, 227, 227);
+	color: rgb(3, 3, 3);
+	border: 2px solid rgb(126, 126, 126);
+	border-radius: 4px
+}
+
+QPushButton:hover{
+	background-color: rgb(252, 255, 216);
+}</string>
+       </property>
+       <property name="text">
+        <string>Следующий</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="1">
+      <widget class="QLabel" name="label_hour">
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0" colspan="4">
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_read_time">
+         <property name="font">
+          <font>
+           <family>Times New Roman</family>
+           <pointsize>16</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LayoutDirection::RightToLeft</enum>
+         </property>
+         <property name="text">
+          <string>Читать время и день недели </string>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
     </layout>
    </widget>
    <widget class="QStackedWidget" name="stackedWidget_connect_variants">
@@ -1076,19 +1135,6 @@ QPushButton:hover{
      <layout class="QGridLayout" name="gridLayout_6">
       <item row="0" column="1">
        <layout class="QGridLayout" name="gridLayout_7" columnstretch="3,3,1,1,2,1,2,1,2">
-        <item row="0" column="5">
-         <spacer name="horizontalSpacer_10">
-          <property name="orientation">
-           <enum>Qt::Orientation::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
         <item row="0" column="1">
          <widget class="QSpinBox" name="lineEdit_com_port">
           <property name="minimumSize">
@@ -1124,189 +1170,6 @@ QPushButton:hover{
           <property name="value">
            <number>1</number>
           </property>
-         </widget>
-        </item>
-        <item row="0" column="7">
-         <spacer name="horizontalSpacer_11">
-          <property name="orientation">
-           <enum>Qt::Orientation::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>10</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="0" column="2">
-         <spacer name="horizontalSpacer_7">
-          <property name="orientation">
-           <enum>Qt::Orientation::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="0" column="3">
-         <widget class="QLabel" name="label_mac_address_4">
-          <property name="font">
-           <font>
-            <family>Times New Roman</family>
-            <pointsize>16</pointsize>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>ID</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="6">
-         <widget class="QComboBox" name="comboBox_baunrate">
-          <property name="font">
-           <font>
-            <family>Times New Roman</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <item>
-           <property name="text">
-            <string>9600 Baudrate</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>19200 Baudrate</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>38400 Baudrate</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>56000 Baudrate</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>115200 Baudrate</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="0" column="4">
-         <widget class="QSpinBox" name="lineEdit_slave_id_com">
-          <property name="minimumSize">
-           <size>
-            <width>50</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>50</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Times New Roman</family>
-            <pointsize>13</pointsize>
-           </font>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-          </property>
-          <property name="buttonSymbols">
-           <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
-          </property>
-          <property name="minimum">
-           <number>1</number>
-          </property>
-          <property name="maximum">
-           <number>255</number>
-          </property>
-          <property name="value">
-           <number>255</number>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_15">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>130</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Times New Roman</family>
-            <pointsize>16</pointsize>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>COM порт</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="6">
-         <widget class="QComboBox" name="comboBox_parity">
-          <property name="font">
-           <font>
-            <family>Times New Roman</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <item>
-           <property name="text">
-            <string>None Parity</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Odd Parity</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Even Parity</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="0" column="8">
-         <widget class="QComboBox" name="comboBox_data_bit">
-          <property name="font">
-           <font>
-            <family>Times New Roman</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <item>
-           <property name="text">
-            <string>8 Data bits</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>7 Data bits</string>
-           </property>
-          </item>
          </widget>
         </item>
         <item row="1" column="8">
@@ -1357,9 +1220,205 @@ QPushButton:hover{
 }</string>
           </property>
           <property name="text">
-           <string>Другой тип подключения</string>
+           <string>Modbus TCP/IP</string>
           </property>
          </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_15">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>130</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>16</pointsize>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>COM порт</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QLabel" name="label_mac_address_4">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>16</pointsize>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>ID</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="7">
+         <spacer name="horizontalSpacer_11">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>10</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="6">
+         <widget class="QComboBox" name="comboBox_parity">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <item>
+           <property name="text">
+            <string>None Parity</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Odd Parity</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Even Parity</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="0" column="8">
+         <widget class="QComboBox" name="comboBox_data_bit">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <item>
+           <property name="text">
+            <string>8 Data bits</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>7 Data bits</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="0" column="4">
+         <widget class="QSpinBox" name="lineEdit_slave_id_com">
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>50</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>13</pointsize>
+           </font>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+          </property>
+          <property name="buttonSymbols">
+           <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+          </property>
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>255</number>
+          </property>
+          <property name="value">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="6">
+         <widget class="QComboBox" name="comboBox_baunrate">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <item>
+           <property name="text">
+            <string>9600 Baudrate</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>19200 Baudrate</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>38400 Baudrate</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>56000 Baudrate</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>115200 Baudrate</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="0" column="5">
+         <spacer name="horizontalSpacer_10">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="2">
+         <spacer name="horizontalSpacer_7">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </item>
@@ -1444,7 +1503,7 @@ QPushButton:hover{
 }</string>
           </property>
           <property name="text">
-           <string>Другой тип подключения</string>
+           <string>Serial Port</string>
           </property>
          </widget>
         </item>
@@ -1591,7 +1650,7 @@ QPushButton:hover{
      </font>
     </property>
     <property name="text">
-     <string>MAC-адрес: </string>
+     <string/>
     </property>
    </widget>
   </widget>

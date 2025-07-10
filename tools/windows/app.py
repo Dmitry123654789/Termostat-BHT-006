@@ -17,6 +17,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.slave = None
         self.slave_id = None
+        self.count_read = 7
 
         self.timer = QTimer(self)
         self.timer_bulb = QTimer(self)
@@ -51,11 +52,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pushButton_change_com_port.clicked.connect(self.change_com_port)
         self.pushButton_change_tcp_ip.clicked.connect(self.change_tcp_ip)
 
+        self.checkBox_read_time.clicked.connect(self.read_time)
+
+    def read_time(self):
+        if self.checkBox_read_time.isChecked():
+            self.count_read = 10
+        else:
+            self.count_read = 7
+
     def change_com_port(self):
         self.stackedWidget_connect_variants.setCurrentIndex(0)
+        self.clean_value()
 
     def change_tcp_ip(self):
         self.stackedWidget_connect_variants.setCurrentIndex(1)
+        self.clean_value()
 
     def update_bulb(self):
         self.pushButton_upload.setStyleSheet('''QPushButton{
@@ -84,61 +95,51 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         now = datetime.now()
         hour, minute, day_week = now.hour, now.minute, now.weekday() + 1
 
-        res_hour = set_time(self.slave, self.slave_id, 9, hour)
-        res_minute = set_time(self.slave, self.slave_id, 8, minute)
-        res_day_week = set_time(self.slave, self.slave_id, 10, day_week)
-
-        self.label_hour.setText(f'{res_hour if not res_hour is None else ""}')
-        self.label_minut.setText(f'{res_minute if not res_minute is None else ""}')
-        self.label_day_week.setText(f'{DAY_WEEK[res_day_week]}')
+        res_hour = set_value(self.slave, self.slave_id, 9, hour)
+        res_minute = set_value(self.slave, self.slave_id, 8, minute)
+        res_day_week = set_value(self.slave, self.slave_id, 10, day_week)
+        self.update_labels()
 
     def set_minute(self):
-        res = set_time(self.slave, self.slave_id, 8, int(self.lineEdit_set_minute.text()))
-        self.label_minut.setText(f'{res if not res is None else ""}')
+        res = set_value(self.slave, self.slave_id, 8, int(self.lineEdit_set_minute.text()))
+        self.update_labels()
 
     def set_hour(self):
-        res = set_time(self.slave, self.slave_id, 9, int(self.lineEdit_set_hour.text()))
-        self.label_hour.setText(f'{res if not res is None else ""}')
+        res = set_value(self.slave, self.slave_id, 9, int(self.lineEdit_set_hour.text()))
+        self.update_labels()
 
     def next_day_week(self):
-        res = change_value(self.slave, self.slave_id, 10, cycle=8, del_zero=True)
-        self.label_day_week.setText(f'{DAY_WEEK[res]}')
+        res = change_value(self.slave, self.slave_id, 10, cycle=8, min_value=0)
+        self.update_labels()
 
     def set_temp(self):
-        temp = float(self.doubleSpinBox_set_temp.text().replace(',', '.'))
-        res = change_teperature_value(self.slave, self.slave_id, 5, temp)
-        self.label_set_temp.setText(f'{(res / 10) if not res is None else ""} °C')
+        temp = int(float(self.doubleSpinBox_set_temp.text().replace(',', '.')) * 10)
+        res = set_value(self.slave, self.slave_id, 5, temp)
+        self.update_labels()
 
     def week_timer(self):
-        temp = float(self.doubleSpinBox_week_timer.text().replace(',', '.'))
-        res = change_teperature_value(self.slave, self.slave_id, 6, temp)
-        self.label_week_timer.setText(f'{(res / 10) if not res is None else ""} °C')
+        temp = int(float(self.doubleSpinBox_week_timer.text().replace(',', '.')) * 10)
+        res = set_value(self.slave, self.slave_id, 6, temp)
+        self.update_labels()
 
     def set_display(self):
         res = change_value(self.slave, self.slave_id, 1)
-        self.label_display.setText(f'{ON_OFF[res]}')
+        self.update_labels()
 
     def auto_hand(self):
-        res = change_value(self.slave, self.slave_id, 3, value=0)
-        self.label_auto_hand.setText(f'{HEAD_AUTO[res]}')
+        res = change_value(self.slave, self.slave_id, 3, value=int(self.checkBox_auto_hand.isChecked()))
+        self.update_labels()
 
     def block_key(self):
         res = change_value(self.slave, self.slave_id, 7)
-        self.label_block_key.setText(f'{ON_OFF[res]}')
+        self.update_labels()
 
     def update_labels(self):
         if self.slave is None:
             return
-        try:
-            get_values = get_values_holding_register(self.slave, self.slave_id, 10)
-        except TimeoutError:
-            dlg = WarningDiolog('Устройство не подключено')
-            dlg.exec()
-            self.clean_value()
-            return
-        except ConnectionResetError:
-            dlg = WarningDiolog('Устройство не подключено\nУдаленный хост принудительно разорвал существующее подключение')
-            dlg.exec()
+
+        get_values = get_values_holding_register(self.slave, self.slave_id, self.count_read, 10 - self.count_read)
+        if get_values is None:
             self.clean_value()
             return
 
@@ -151,8 +152,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.label_set_temp.setText(f'{get_values[4] / 10} °C')
         self.label_week_timer.setText(f'{get_values[5] / 10} °C')
         self.label_block_key.setText(f'{ON_OFF[get_values[6]]}')
-        self.label_minut.setText(f'{get_values[7]}')
-        self.label_hour.setText(f'{get_values[8]}')
+        self.label_minut.setText(f'{get_values[7] if not get_values[7] is None else ""}')
+        self.label_hour.setText(f'{get_values[8] if not get_values[8] is None else ""}')
         self.label_day_week.setText(f'{DAY_WEEK[get_values[9]]}')
 
     def update_timer(self):
@@ -161,17 +162,47 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.timer.setInterval(int(self.lineEdit_update_ms.text()))
 
     def set_device(self):
+        if self.stackedWidget_connect_variants.currentIndex() == 1:
+            self.connect_device_tcp_ip()
+        else:
+            self.connect_device_com_port()
+
+    def connect_device_com_port(self):
+        com = f'COM{int(self.lineEdit_com_port.text())}'
+        boundrate = int(self.comboBox_baunrate.currentText().split()[0])
+        parity = self.comboBox_parity.currentText()[0]
+        data_bit = int(self.comboBox_data_bit.currentText()[0])
+        stop_bit = int(self.comboBox_stop_bit.currentText()[0])
+
+        slave = connect_device_com_port(com, boundrate, parity, data_bit, stop_bit)
+        if not slave is None:
+            slave_id = int(self.lineEdit_slave_id_com.text())
+            res = check_id_device(slave, slave_id)
+            if res:
+                self.clean_value()
+                self.slave_id = slave_id
+                self.slave = slave
+
+            else:
+                slave.close()
+                dlg = WarningDiolog(f'Ошибка с подключением\nПроверьте правильность ID')
+                dlg.exec()
+        else:
+            dlg = WarningDiolog(f'Ошибка с подключением\nПроверьте правильность входных данных')
+            dlg.exec()
+
+    def connect_device_tcp_ip(self):
         host = self.lineEdit_ip.text()
         port = int(self.lineEdit_port_tcp_ip.text())
 
         slave = connect_device_tcp_ip(host=host, port=port)
         if not slave is None:
-            self.slave = slave
             slave_id = int(self.lineEdit_slave_id_tcp_ip.text())
-
-            res = check_id_device(self.slave, slave_id)
+            res = check_id_device(slave, slave_id)
             if res:
+                self.clean_value()
                 self.slave_id = slave_id
+                self.slave = slave
 
                 host = self.slave.comm_params.host
                 port = self.slave.comm_params.port
@@ -179,30 +210,25 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.label_mac_address.setText(f'MAC-адрес: {ip_mac}\tIP: {host}\tПорт: {port}')
 
             else:
+                slave.close()
                 dlg = WarningDiolog(f'Ошибка с подключением\nПроверьте правильность ID')
                 dlg.exec()
-
         else:
             dlg = WarningDiolog(f'Ошибка с подключением\nПроверьте правильность IP и Порта')
             dlg.exec()
 
-    def clean_value(self):
-        self.label_display.setText('')
-        self.label_temp.setText('')
-        self.label_auto_hand.setText('')
-        self.label_heat.setText('')
-        self.label_set_temp.setText('')
-        self.label_week_timer.setText('')
-        self.label_block_key.setText('')
-        self.label_minut.setText('')
-        self.label_hour.setText('')
-        self.label_day_week.setText('')
 
+    def clean_value(self):
+        all_fields = [self.label_display, self.label_temp, self.label_auto_hand, self.label_heat, self.label_set_temp,
+                      self.label_week_timer, self.label_block_key, self.label_minut, self.label_hour,
+                      self.label_day_week, self.label_mac_address]
+        for field in all_fields:
+            field.setText("")
+
+        if not self.slave is None:
+            self.slave.close()
         self.slave = None
         self.slave_id = None
 
-        self.label_mac_address.setText('MAC-адрес: ')
-
     def closeEvent(self, event):
         self.deleteLater()
-
