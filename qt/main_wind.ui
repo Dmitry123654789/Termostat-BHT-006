@@ -6,300 +6,35 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>760</width>
-    <height>668</height>
+    <width>757</width>
+    <height>675</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>760</width>
-    <height>668</height>
+    <width>757</width>
+    <height>675</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>760</width>
-    <height>668</height>
+    <width>757</width>
+    <height>675</height>
    </size>
-  </property>
-  <property name="sizeIncrement">
-   <size>
-    <width>800</width>
-    <height>535</height>
-   </size>
-  </property>
-  <property name="font">
-   <font>
-    <family>Times New Roman</family>
-    <pointsize>13</pointsize>
-   </font>
   </property>
   <property name="windowTitle">
-   <string>Termostat BHT</string>
+   <string>MainWindow</string>
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../icon.ico</normaloff>../icon.ico</iconset>
-  </property>
-  <property name="styleSheet">
-   <string notr="true"/>
+    <normaloff>../img/icon.ico</normaloff>../img/icon.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <property name="styleSheet">
-    <string notr="true">.centralwidget{
-background-color: #e3e4e8;
-}</string>
-   </property>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>11</x>
-      <y>159</y>
-      <width>730</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QLabel" name="label_3">
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>16</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Опрос(мc)</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QSpinBox" name="lineEdit_update_ms">
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>13</pointsize>
-        </font>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-       </property>
-       <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
-       </property>
-       <property name="minimum">
-        <number>200</number>
-       </property>
-       <property name="maximum">
-        <number>100000</number>
-       </property>
-       <property name="value">
-        <number>1000</number>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_set_timer">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>12</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(227, 227, 227);
-	color: rgb(3, 3, 3);
-	border: 2px solid rgb(126, 126, 126);
-	border-radius: 4px
-}
-
-QPushButton:hover{
-	background-color: rgb(252, 255, 216);
-}</string>
-       </property>
-       <property name="text">
-        <string>Установить</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_12">
-       <property name="orientation">
-        <enum>Qt::Orientation::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_upload">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>16</width>
-         <height>16</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16</width>
-         <height>16</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-background-color: rgb(227, 227, 227);
-	color: rgb(3, 3, 3);
-	border: 2px solid rgb(126, 126, 126);
-	border-radius: 8px
-}
-</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_16">
-       <property name="orientation">
-        <enum>Qt::Orientation::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_15">
-       <property name="orientation">
-        <enum>Qt::Orientation::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_14">
-       <property name="orientation">
-        <enum>Qt::Orientation::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_13">
-       <property name="orientation">
-        <enum>Qt::Orientation::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_set_device">
-       <property name="minimumSize">
-        <size>
-         <width>150</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>12</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(227, 227, 227);
-	color: rgb(3, 3, 3);
-	border: 2px solid rgb(126, 126, 126);
-	border-radius: 3px
-}
-
-QPushButton:hover{
-	background-color: rgb(30, 170, 14);
-	color: rgb(255, 255, 255);
-}</string>
-       </property>
-       <property name="text">
-        <string>Подключиться</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_unset_device">
-       <property name="minimumSize">
-        <size>
-         <width>150</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Times New Roman</family>
-         <pointsize>12</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(227, 227, 227);
-	color: rgb(3, 3, 3);
-	border: 2px solid rgb(126, 126, 126);
-	border-radius: 3px
-}
-
-QPushButton:hover{
-	background-color: rgb(30, 170, 14);
-	color: rgb(255, 255, 255);
-}</string>
-       </property>
-       <property name="text">
-        <string>Отключиться</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>11</x>
-      <y>226</y>
+      <y>216</y>
       <width>731</width>
       <height>426</height>
      </rect>
@@ -616,7 +351,7 @@ QPushButton:hover{
         </font>
        </property>
        <property name="text">
-        <string>Минут</string>
+        <string>Минуты</string>
        </property>
       </widget>
      </item>
@@ -783,6 +518,12 @@ QPushButton:hover{
      </item>
      <item row="5" column="0">
       <widget class="QLabel" name="label_11">
+       <property name="minimumSize">
+        <size>
+         <width>360</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <family>Times New Roman</family>
@@ -1119,11 +860,256 @@ QPushButton:hover{
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="layoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>11</x>
+      <y>149</y>
+      <width>730</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Опрос(мc)</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="lineEdit_update_ms">
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>13</pointsize>
+        </font>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+       <property name="buttonSymbols">
+        <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+       </property>
+       <property name="minimum">
+        <number>200</number>
+       </property>
+       <property name="maximum">
+        <number>100000</number>
+       </property>
+       <property name="value">
+        <number>1000</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_set_timer">
+       <property name="minimumSize">
+        <size>
+         <width>120</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>12</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	background-color: rgb(227, 227, 227);
+	color: rgb(3, 3, 3);
+	border: 2px solid rgb(126, 126, 126);
+	border-radius: 4px
+}
+
+QPushButton:hover{
+	background-color: rgb(252, 255, 216);
+}</string>
+       </property>
+       <property name="text">
+        <string>Установить</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_12">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_upload">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>16</width>
+         <height>16</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16</width>
+         <height>16</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+background-color: rgb(227, 227, 227);
+	color: rgb(3, 3, 3);
+	border: 2px solid rgb(126, 126, 126);
+	border-radius: 8px
+}
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_16">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_15">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_14">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_13">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_set_device">
+       <property name="minimumSize">
+        <size>
+         <width>150</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>12</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	background-color: rgb(227, 227, 227);
+	color: rgb(3, 3, 3);
+	border: 2px solid rgb(126, 126, 126);
+	border-radius: 3px
+}
+
+QPushButton:hover{
+	background-color: rgb(30, 170, 14);
+	color: rgb(255, 255, 255);
+}</string>
+       </property>
+       <property name="text">
+        <string>Подключиться</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_unset_device">
+       <property name="minimumSize">
+        <size>
+         <width>150</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>12</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	background-color: rgb(227, 227, 227);
+	color: rgb(3, 3, 3);
+	border: 2px solid rgb(126, 126, 126);
+	border-radius: 3px
+}
+
+QPushButton:hover{
+	background-color: rgb(30, 170, 14);
+	color: rgb(255, 255, 255);
+}</string>
+       </property>
+       <property name="text">
+        <string>Отключиться</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
    <widget class="QStackedWidget" name="stackedWidget_connect_variants">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>10</y>
+      <y>0</y>
       <width>731</width>
       <height>80</height>
      </rect>
@@ -1637,7 +1623,7 @@ QPushButton:hover{
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>100</y>
+      <y>90</y>
       <width>721</width>
       <height>24</height>
      </rect>
@@ -1654,6 +1640,40 @@ QPushButton:hover{
     </property>
    </widget>
   </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>757</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Опции</string>
+    </property>
+    <widget class="QMenu" name="menu_2">
+     <property name="title">
+      <string>Язык</string>
+     </property>
+     <addaction name="action_russian"/>
+     <addaction name="action_english"/>
+    </widget>
+    <addaction name="menu_2"/>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
+  <action name="action_russian">
+   <property name="text">
+    <string>Русcкий (ru)</string>
+   </property>
+  </action>
+  <action name="action_english">
+   <property name="text">
+    <string>English (en)</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

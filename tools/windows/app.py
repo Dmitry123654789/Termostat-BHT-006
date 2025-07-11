@@ -1,23 +1,27 @@
 from datetime import datetime
 
-from PyQt6.QtCore import QTimer
+from PyQt6.QtCore import QTimer, QTranslator
 from PyQt6.QtWidgets import QMainWindow
 from getmac import get_mac_address
 
 from qt.main_wind import Ui_MainWindow
-from tools.constants import DAY_WEEK, ON_OFF, HEAD_AUTO
+from tools.constants import DAY_WEEK, ON_OFF, HEAD_AUTO, LANG
 from tools.func import *
 from tools.windows.warning import WarningDiolog
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
-    def __init__(self):
+    def __init__(self, app):
         super().__init__()
         self.setupUi(self)
 
         self.slave = None
         self.slave_id = None
         self.count_read = 7
+        self.lang_index = 1
+        self.app = app
+
+        self.trans = QTranslator(self)
 
         self.timer = QTimer(self)
         self.timer_bulb = QTimer(self)
@@ -25,6 +29,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.create_timers()
 
         self.buttons_connect()
+
+        self.change_language('en')
 
     def create_timers(self):
         self.timer.setInterval(1000)
@@ -53,6 +59,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pushButton_change_tcp_ip.clicked.connect(self.change_tcp_ip)
 
         self.checkBox_read_time.clicked.connect(self.read_time)
+
+        self.action_english.triggered.connect(lambda: self.change_language('en'))
+        self.action_russian.triggered.connect(lambda: self.change_language('ru'))
 
     def read_time(self):
         if self.checkBox_read_time.isChecked():
@@ -109,7 +118,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.update_labels()
 
     def next_day_week(self):
-        res = change_value(self.slave, self.slave_id, 10, cycle=8, min_value=0)
+        res = change_value(self.slave, self.slave_id, 10, cycle=8, min_value=1)
         self.update_labels()
 
     def set_temp(self):
@@ -145,16 +154,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.update_bulb()
 
-        self.label_display.setText(f'{ON_OFF[get_values[0]]}')
+        self.label_display.setText(f'{ON_OFF[get_values[0]][self.lang_index]}')
         self.label_temp.setText(f'{get_values[1] / 10} °C')
-        self.label_auto_hand.setText(f'{HEAD_AUTO[get_values[2]]}')
-        self.label_heat.setText(f'{ON_OFF[get_values[3]]}')
+        self.label_auto_hand.setText(f'{HEAD_AUTO[get_values[2]][self.lang_index]}')
+        self.label_heat.setText(f'{ON_OFF[get_values[3]][self.lang_index]}')
         self.label_set_temp.setText(f'{get_values[4] / 10} °C')
         self.label_week_timer.setText(f'{get_values[5] / 10} °C')
-        self.label_block_key.setText(f'{ON_OFF[get_values[6]]}')
+        self.label_block_key.setText(f'{ON_OFF[get_values[6]][self.lang_index]}')
         self.label_minut.setText(f'{get_values[7] if not get_values[7] is None else ""}')
         self.label_hour.setText(f'{get_values[8] if not get_values[8] is None else ""}')
-        self.label_day_week.setText(f'{DAY_WEEK[get_values[9]]}')
+        self.label_day_week.setText(f'{DAY_WEEK[get_values[9]][self.lang_index]}')
 
     def update_timer(self):
         if self.slave is None:
@@ -228,6 +237,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.slave.close()
         self.slave = None
         self.slave_id = None
+
+    def change_language(self, lang):
+        """Меняет язык интерфейса"""
+        self.app.load_translation(lang)
+
+        # Перезагружаем UI чтобы применить перевод
+        self.retranslateUi(self)
+
+        self.lang_index = LANG[lang]
+
 
     def closeEvent(self, event):
         self.clean_value()
